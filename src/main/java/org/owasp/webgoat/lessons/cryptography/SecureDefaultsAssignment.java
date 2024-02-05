@@ -44,7 +44,7 @@ public class SecureDefaultsAssignment extends AssignmentEndpoint {
   public AttackResult completed(
       @RequestParam String secretFileName, @RequestParam String secretText)
       throws NoSuchAlgorithmException {
-    if (secretFileName != null && secretFileName.equals("default_secret")) {
+    if (secretFileName != null && "default_secret".equals(secretFileName)) {
       if (secretText != null
           && HashingAssignment.getHash(secretText, "SHA-256")
               .equalsIgnoreCase(

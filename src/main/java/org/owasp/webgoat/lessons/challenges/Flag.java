@@ -36,6 +36,7 @@ import org.owasp.webgoat.container.users.UserTracker;
 import org.owasp.webgoat.container.users.UserTrackerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,10 +64,10 @@ public class Flag extends AssignmentEndpoint {
     IntStream.range(1, 10).forEach(i -> FLAGS.put(i, UUID.randomUUID().toString()));
   }
 
-  @RequestMapping(
+  @PostMapping(
       path = "/challenge/flag",
-      method = RequestMethod.POST,
-      produces = MediaType.APPLICATION_JSON_VALUE)
+  
+     produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public AttackResult postFlag(@RequestParam String flag) {
     UserTracker userTracker = userTrackerRepository.findByUser(webSession.getUserName());
